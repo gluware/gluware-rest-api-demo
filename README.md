@@ -96,6 +96,7 @@ delete_device - Deletes an existing device specified by the device id.
                 DELETE https://<Gluware host>/api/devices/54d4d631-d828-48e1-9482-5f5582c86f6e
 
 ORGANIZATION OPERATIONS
+
 get_organizations - Retrieves all organizations on the Gluware host
                     GET https://<Gluware host>/api/organizations
    
