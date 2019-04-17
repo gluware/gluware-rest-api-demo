@@ -15,10 +15,10 @@ Ex.
 This file and gluware_device_rest_api_client.py must be in the same directory or in sys.path
 Usage: python GluwareDeviceAPIDemo
 
-This demo uses a set of basic text menus to demonstrate various calls to the Gluware Device REST API
-There are 3 primary submenus: Connection Info, Organizations, and Devices
+This demo uses a set of basic text menus to demonstrate various calls to the Gluware Device REST API.
+There are 3 primary submenus: Connection Info, Organizations, and Devices.
 
-NOTE: Connection information must be supplied in order to use any of the Organization or Device calls
+NOTE: Connection information must be supplied in order to use any of the Organization or Device calls.
 
 Required Connection Info: Gluware Control username and password and the Gluware Control hostname or IP.
 
@@ -56,11 +56,7 @@ Demo example flow:
 
 *** Information regarding gluware_device_rest_api_client.py ***
 
-This class provides convenience methods for the Gluware Device REST API
-The requests and urllib3 modules are used to simplify communication with the HTTP server,
-to handle the creation and processing of HTTP requests and responses, and to make use of
-session concepts to reduce the need for specifying auth params, etc., with each operation
-This class is provided only for illustrative purposes and to support the demo utility.
+This class provides convenience methods for the Gluware Device REST API. The requests and urllib3 modules are used to simplify communication with the HTTP server, to handle the creation and processing of HTTP requests and responses, and to make use of session concepts to reduce the need for specifying auth params, etc., with each operation. This class is provided only for illustrative purposes and to support the demo utility.
 
 Details for the Gluware REST API calls used below, including error responses, may be found at:
 https://<your Gluware control host>/api-docs/
