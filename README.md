@@ -11,7 +11,7 @@ To install these modules run pip in your environment:
  - pip install urllib3 
  - pip install Menu
 
-This file and gluware_device_rest_api_client.py must be in the same directory or in sys.path 
+This file and gluware_device_rest_api_client.py must be in the same directory or in sys.path  
 Usage: *python GluwareDeviceAPIDemo.py*
 
 This demo uses a set of basic text menus to demonstrate various calls to the Gluware Device REST API. There are 3 primary submenus: Connection Info, Organizations, and Devices.
@@ -50,47 +50,47 @@ Demo example flow:
 
 This class provides convenience methods for the Gluware Device REST API. The requests and urllib3 modules are used to simplify communication with the HTTP server, to handle the creation and processing of HTTP requests and responses, and to make use of session concepts to reduce the need for specifying auth params, etc., with each operation. This class is provided only for illustrative purposes and to support the demo utility.
 
-Details for the Gluware REST API calls used below, including error responses, may be found at: 
+Details for the Gluware REST API calls used below, including error responses, may be found at:  
 https://[your gluware control host or ip]/api-docs/ 
 
-The available convenience methods encapsulating the Gluware REST API calls are: 
+The available convenience methods encapsulating the Gluware REST API calls are:  
 
 **DEVICE OPERATIONS** 
-*get_devices* - Returns all devices matching query query details. Query details are json formatted key/value pairs for device attributes. To get all devices pass None as the payload value. 
-Example query detail value: 
-'{"orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}' 
+*get_devices* - Returns all devices matching query query details. Query details are json formatted key/value pairs for device attributes. To get all devices pass None as the payload value.   
+Example query detail value:  
+'{"orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}'  
 GET https:///api/devices?<key/value pairs from query details>
 
-*get_device* - Returns a single device matching the device_id parameter value 
-GET https:///api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5
+*get_device* - Returns a single device matching the device_id parameter value  
+GET https:///api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5 
 
-*create_device* - Creates a new device with details passed in device_details parameter. Required parameters are name and orgId. 
-POST https:///api/devices 
-Example POST payload: 
+*create_device* - Creates a new device with details passed in device_details parameter. Required parameters are name and orgId.  
+POST https:///api/devices  
+Example POST payload:  
 '{"name":"My First Device", "orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}'
 
-*update_device* - Updates attributes of an existing device specified by the device id. Values to be updated should be provided in the device_details parameter in the form of json key/value pairs 
-PUT https:///api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5 
-Example device detail value: 
+*update_device* - Updates attributes of an existing device specified by the device id. Values to be updated should be provided in the device_details parameter in the form of json key/value pairs  
+PUT https:///api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5  
+Example device detail value:  
 '{"name": "My updated device name"}'
 
-*discover_devices* - Triggers device discovery on all devices provided in the device details parameter Device details should be a json object consisting of a "devices" array listing the device ids to be discovered. Response is either a "starting" message or an error. 
-POST https:///api/devices/discover 
-Example discover payload: 
+*discover_devices* - Triggers device discovery on all devices provided in the device details parameter Device details should be a json object consisting of a "devices" array listing the device ids to be discovered. Response is either a "starting" message or an error.   
+POST https:///api/devices/discover  
+Example discover payload:  
 '{"devices": ["74caf003-0b1d-4c03-a166-1dce207b3ad5", "54d4d631-d828-48e1-9482-5f5582c86f6e"]}
 
-*delete_device* - Deletes an existing device specified by the device id. 
+*delete_device* - Deletes an existing device specified by the device id.  
 DELETE https:///api/devices/54d4d631-d828-48e1-9482-5f5582c86f6e
 
 **ORGANIZATION OPERATIONS**
 
-*get_organizations* - Retrieves all organizations on the Gluware host 
+*get_organizations* - Retrieves all organizations on the Gluware host  
 GET https:///api/organizations
 
-*get_organization* - Retrieves a specific organization specified by the organization id parameter value 
+*get_organization* - Retrieves a specific organization specified by the organization id parameter value  
 GET https:///api/organizations/565a65db-54e7-4461-a954-f0f38f310e19
 
-*get_organization_id_by_name* - Convenience method that retrieves an organization by name instead of id. Both the org name and the name of it's parent org are required in order to differentiate between two organizations on a system that have the same name but different parents such as: GluwareSystemOrganization/Lab/US and GluwareSystemOrganization/Production/US. 
+*get_organization_id_by_name* - Convenience method that retrieves an organization by name instead of id. Both the org name and the name of it's parent org are required in order to differentiate between two organizations on a system that have the same name but different parents such as: GluwareSystemOrganization/Lab/US and GluwareSystemOrganization/Production/US.   
 
 This method simply requests all organizations and returns only the single organization matching both the parent name and the org name. 
 
