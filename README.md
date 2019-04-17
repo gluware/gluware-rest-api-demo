@@ -7,10 +7,12 @@ Supports Gluware REST API v1
 Python modules that must be available are:
 requests, urllib3, and Menu
 
-To install these modules run pip in your environment
-Ex.
+To install these modules run pip in your environment:
+
 pip install requests
+
 pip install urllib3
+
 pip install Menu
 
 This file and gluware_device_rest_api_client.py must be in the same directory or in sys.path
