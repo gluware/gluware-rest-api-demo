@@ -19,7 +19,8 @@ This demo uses a set of basic text menus to demonstrate various calls to the Glu
 There are 3 primary submenus: Connection Info, Organizations, and Devices
 
 NOTE: Connection information must be supplied in order to use any of the Organization or Device calls
-Connection info required: Gluware Control username and password and the Gluware Control hostname or IP
+
+Required Connection Info: Gluware Control username and password and the Gluware Control hostname or IP
 Once the connection information is set it will be automatically used by the demo for each call to the REST API
 
 Demo example flow:
