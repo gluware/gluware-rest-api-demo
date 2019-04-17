@@ -9,9 +9,10 @@ requests, urllib3, and Menu
 
 To install these modules run pip in your environment
 Ex.
-   pip install requests
-   pip install urllib3
-   pip install Menu
+pip install requests
+pip install urllib3
+pip install Menu
+
 This file and gluware_device_rest_api_client.py must be in the same directory or in sys.path
 Usage: python GluwareDeviceAPIDemo
 
