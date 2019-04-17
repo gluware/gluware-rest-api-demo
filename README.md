@@ -68,32 +68,39 @@ get_devices - Returns all devices matching query query details. Query details ar
               key/value pairs for device attributes. To get all devices pass None as the payload value.
               Example query detail value: '{"orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}'
               GET https://<Gluware host>/api/devices?<key/value pairs from query details>
+   
 get_device - Returns a single device matching the device_id parameter value
              GET https://<Gluware host>/api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5
+   
 create_device - Creates a new device with details passed in device_details parameter. Required parameters are
                 name and orgId.
                 POST https://<Gluware host>/api/devices
                 Example POST payload:
                 '{"name":"My First Device", "orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}'
+   
 update_device - Updates attributes of an existing device specified by the device id. Values to be updated
                 should be provided in the device_details parameter in the form of json key/value pairs
                 PUT https://<Gluware host>/api/devices/74caf003-0b1d-4c03-a166-1dce207b3ad5
                 Example device detail value:
                 '{"name": "My updated device name"}'
+   
 discover_devices - Triggers device discovery on all devices provided in the device details parameter
                    Device details should be a json object consisting of a "devices" array listing the
                    device ids to be discovered. Response is either a "starting" message or an error.
                    POST https://<Gluware host>/api/devices/discover
                    Example discover payload:
                    '{"devices": ["74caf003-0b1d-4c03-a166-1dce207b3ad5", "54d4d631-d828-48e1-9482-5f5582c86f6e"]}
+   
 delete_device - Deletes an existing device specified by the device id.
                 DELETE https://<Gluware host>/api/devices/54d4d631-d828-48e1-9482-5f5582c86f6e
 
 ORGANIZATION OPERATIONS
 get_organizations - Retrieves all organizations on the Gluware host
                     GET https://<Gluware host>/api/organizations
+   
 get_organization - Retrieves a specific organization specified by the organization id parameter value
                    GET https://<Gluware host>/api/organizations/565a65db-54e7-4461-a954-f0f38f310e19
+   
 get_organization_id_by_name - Convenience method that retrieves an organization by name instead of id.
                               Both the org name and the name of it's parent org are required in order to
                               differentiate between two organizations on a system that have the same name but
