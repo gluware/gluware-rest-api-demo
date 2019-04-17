@@ -5,7 +5,7 @@ Demonstrates usage of Gluware's REST API
 **REQUIRED PYTHON VERSION: 3.x** 
 Supports Gluware REST API v1
 
-Python modules that must be available are: requests, urllib3, and Menu
+Python modules that must be available are: requests, urllib3, and Menu.  
 To install these modules run pip in your environment:
  - pip install requests 
  - pip install urllib3 
