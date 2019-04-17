@@ -55,7 +55,7 @@ https://[your gluware control host or ip]/api-docs/
 
 The available convenience methods encapsulating the Gluware REST API calls are:  
 
-**DEVICE OPERATIONS** 
+**DEVICE OPERATIONS**   
 *get_devices* - Returns all devices matching query query details. Query details are json formatted key/value pairs for device attributes. To get all devices pass None as the payload value.   
 Example query detail value:  
 '{"orgId": "565a65db-54e7-4461-a954-f0f38f310e19"}'  
@@ -82,7 +82,7 @@ Example discover payload:
 *delete_device* - Deletes an existing device specified by the device id.  
 DELETE https:///api/devices/54d4d631-d828-48e1-9482-5f5582c86f6e
 
-**ORGANIZATION OPERATIONS**
+**ORGANIZATION OPERATIONS**  
 
 *get_organizations* - Retrieves all organizations on the Gluware host  
 GET https:///api/organizations
