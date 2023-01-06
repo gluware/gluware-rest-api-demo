@@ -27,8 +27,8 @@
 # 1. Run the demo from the command line or using a python IDE of your choice
 # 2. Select the Connection Info option from the main menu and enter your Gluware Control credentials and ip/hostname
 # 3. Enter the Organizations sub menu by selected the Organizations option in the main menu
-# 4. List all of the Organization in your Gluware Control system by choosing the List Organizations option from the Organizations
-#    sub menu. Highlight and copy one of the organization IDs for use in subsequent steps
+# 4. List all of the Organization in your Gluware Control system by choosing the List Organizations option from the
+#    Organizations sub menu. Highlight and copy one of the organization IDs for use in subsequent steps
 # 5. Close the Organizaton sub menu by selecting the Close Organizations sub menu option to return to the main menu
 # 6. Select the Devices option from the main menu
 # 7. Select the "Retrieve Devices By Org ID" option from the Devices sub menu and enter the Organization ID from step 4
@@ -58,8 +58,9 @@ import gluware_device_rest_api_client
 from menu import Menu
 import pprint
 
+
 def print_orgs():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         resp = client.get_organizations()
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -68,8 +69,9 @@ def print_orgs():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_orgs_by_name():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         org_name = input("Enter Organization Name: ")
         resp = client.get_organization_id_by_name(org_name, "GluwareSystemOrganization")
         if resp["response_code"] == 200:
@@ -79,8 +81,9 @@ def print_orgs_by_name():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_sub_org_by_name():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         org_name = input("Enter Organization Name: ")
         parent_name = input("Enter Parent Organization Name: ")
         resp = client.get_organization_id_by_name(org_name, parent_name)
@@ -91,8 +94,9 @@ def print_sub_org_by_name():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_org_by_id():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         org_id = input("Enter Organization ID: ")
         resp = client.get_organization(org_id)
         if resp["response_code"] == 200:
@@ -102,8 +106,9 @@ def print_org_by_id():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_devices():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         resp = client.get_devices(None)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -112,8 +117,9 @@ def print_devices():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_devices_in_org_id():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         org_id = input("Enter Organization ID: ")
         payload = {"orgId": org_id}
         resp = client.get_devices(payload)
@@ -124,8 +130,9 @@ def print_devices_in_org_id():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def print_device_by_id():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
         resp = client.get_device(dev_id)
         if resp["response_code"] == 200:
@@ -135,8 +142,9 @@ def print_device_by_id():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def create_device():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_name = input("Enter Device Name: ")
         org_id = input("Enter Organization ID: ")
         payload = '{"name":"' + dev_name + '", "orgId": "' + org_id + '"}'
@@ -148,8 +156,9 @@ def create_device():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def create_discoverable_device():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_name = input("Enter Device Name: ")
         org_id = input("Enter Organization ID: ")
         device_ip_address = input("Enter Device IP Address: ")
@@ -158,10 +167,10 @@ def create_discoverable_device():
         device_enable_password = input("Enter Enable Password (Press Enter if not used): ")
         device_connect_type = input("Enter Connection Type ('ssh' or 'telnet'): ")
         device_connect_port = input("Enter Connection Port (ssh = 22): ")
-        connection_information = '"connectionInformation": {"ip": "'+ device_ip_address + '", "password": "' \
-                                + device_password + '", "userName": "' + device_user_name + '", ' \
-                                + '"type": "' + device_connect_type + '", "port": '+ device_connect_port + ', ' \
-                                + '"enablePassword": "' + device_enable_password + '", "proxyList": []}'
+        connection_information = '"connectionInformation": {"ip": "' + device_ip_address + '", "password": "' \
+                                 + device_password + '", "userName": "' + device_user_name + '", ' \
+                                 + '"type": "' + device_connect_type + '", "port": ' + device_connect_port + ', ' \
+                                 + '"enablePassword": "' + device_enable_password + '", "proxyList": []}'
         payload = '{"name":"' + dev_name + '", "orgId": "' + org_id + '", ' + connection_information + '}'
         resp = client.create_device(payload)
         if resp["response_code"] == 200:
@@ -171,8 +180,9 @@ def create_discoverable_device():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def delete_device():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
         resp = client.delete_device(dev_id)
         if resp["response_code"] == 200:
@@ -182,8 +192,9 @@ def delete_device():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def update_device():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         print("Common elements that can be updated are: name, orgId, description and custom field names")
         dev_id = input("Enter Device ID: ")
         element_name = input("Enter device element name to be updated: ")
@@ -197,8 +208,9 @@ def update_device():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def update_device_connection_info():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
         device_ip_address = input("Enter Device IP Address: ")
         device_user_name = input("Enter Device Username: ")
@@ -219,8 +231,9 @@ def update_device_connection_info():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def discover_device():
-    if connectionInfoIsSet():
+    if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
         payload = '{"devices": ["' + dev_id + '"]}'
         resp = client.discover_devices(payload)
@@ -231,17 +244,21 @@ def discover_device():
             pprint.pprint(resp)
     input("Enter any key to return to menu: ")
 
+
 def set_connection_info():
     global gluware_username, gluware_password, gluware_host_name
     gluware_username = input("Enter username for connection: ")
     gluware_password = input("Enter password for connection: ")
     gluware_host_name = input("Enter hostname or IP for connection: ")
     global client
-    client = gluware_device_rest_api_client.APIClient("https://" + gluware_host_name, gluware_username, gluware_password, gluware_org_name,
-                                  None)
-def connectionInfoIsSet():
+    client = gluware_device_rest_api_client.APIClient("https://" + gluware_host_name, gluware_username,
+                                                      gluware_password, gluware_org_name,
+                                                      None)
+
+
+def connection_info_is_set():
     global gluware_username, gluware_password, gluware_host_name
-    if (gluware_username == "" or gluware_password == "" or gluware_host_name == ""):
+    if gluware_username == "" or gluware_password == "" or gluware_host_name == "":
         print("Please set up Connection Information using the option in the root menu.")
         return False
     else:
@@ -252,25 +269,22 @@ gluware_org_name = ""
 gluware_host_name = ""
 gluware_username = ""
 gluware_password = ""
-client = gluware_device_rest_api_client.APIClient("https://" + gluware_host_name, gluware_username, gluware_password, \
+client = gluware_device_rest_api_client.APIClient("https://" + gluware_host_name, gluware_username, gluware_password,
                                                   gluware_org_name, None)
 menu = Menu()
-orgs = Menu(title = "Organizations")
-devs = Menu(title = "Devices")
-menu.set_options([("Set Connection Info", set_connection_info),("Organization", orgs.open), ("Devices", devs.open), \
+orgs = Menu(title="Organizations")
+devs = Menu(title="Devices")
+menu.set_options([("Set Connection Info", set_connection_info), ("Organization", orgs.open), ("Devices", devs.open),
                   ("Quit", menu.close)])
 menu.set_title("Gluware API Demo")
-orgs.set_options([("List All Organizations", print_orgs),("Retrieve Organization ID by Name", print_orgs_by_name), \
-                  ("Retrieve SubOrganization ID By Name",print_sub_org_by_name), \
-                  ("Retrieve Organization By ID", print_org_by_id), \
+orgs.set_options([("List All Organizations", print_orgs), ("Retrieve Organization ID by Name", print_orgs_by_name),
+                  ("Retrieve SubOrganization ID By Name", print_sub_org_by_name),
+                  ("Retrieve Organization By ID", print_org_by_id),
                   ("Close Organizations Sub Menu", orgs.close)])
-devs.set_options([("List All Devices", print_devices),("List Devices By Org ID", print_devices_in_org_id), \
-                  ("Retrieve Device By ID", print_device_by_id), ("Create Basic Device", create_device), \
-                  ("Create Discoverable Device", create_discoverable_device), \
-                  ("Discover Device", discover_device), ("Update Device by ID", update_device), \
-                  ("Update Device Connection Information", update_device_connection_info), \
+devs.set_options([("List All Devices", print_devices), ("List Devices By Org ID", print_devices_in_org_id),
+                  ("Retrieve Device By ID", print_device_by_id), ("Create Basic Device", create_device),
+                  ("Create Discoverable Device", create_discoverable_device),
+                  ("Discover Device", discover_device), ("Update Device by ID", update_device),
+                  ("Update Device Connection Information", update_device_connection_info),
                   ("Delete Device by ID", delete_device), ("Close Devices Sub Menu", devs.close)])
 menu.open()
-
-
-

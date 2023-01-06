@@ -62,9 +62,10 @@
 import requests
 import urllib3
 
+
 class APIClient:
 
-    def __init__(self, control_url,username, password, organization_name, certificate_file):
+    def __init__(self, control_url, username, password, organization_name, certificate_file):
         # Set up the endpoint to be used by all requests: "https://<host>/api/devices/"
         self.control_url = control_url
         if not self.control_url.endswith('/'):
@@ -93,7 +94,7 @@ class APIClient:
         self.session.mount('http://', adapter)
 
     def get_devices(self, query_details):
-        r = self.session.get(self.control_url[:-1],params=query_details)
+        r = self.session.get(self.control_url[:-1], params=query_details)
         if r.status_code == 200:
             return {"response_code": r.status_code, "response_content": r.json()}
         else:
@@ -107,7 +108,7 @@ class APIClient:
             return {"response_code": r.status_code, "response_content": r.text}
 
     def create_device(self, device_details):
-        r = self.session.post(self.control_url[:-1],json=device_details)
+        r = self.session.post(self.control_url[:-1], json=device_details)
         if r.status_code == 200:
             return {"response_code": r.status_code, "response_content": r.json()}
         else:
@@ -164,4 +165,3 @@ class APIClient:
             return {"response_code": r.status_code, "response_content": r.json()}
         else:
             return {"response_code": r.status_code, "response_content": r.text}
-
