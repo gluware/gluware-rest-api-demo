@@ -147,7 +147,7 @@ def create_device():
     if connection_info_is_set():
         dev_name = input("Enter Device Name: ")
         org_id = input("Enter Organization ID: ")
-        payload = '{"name":"' + dev_name + '", "orgId": "' + org_id + '"}'
+        payload = {"name": dev_name, "orgId": org_id}
         resp = client.create_device(payload)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -157,21 +157,24 @@ def create_device():
     input("Enter any key to return to menu: ")
 
 
+def collect_connection_info():
+    device_ip_address = input("Enter Device IP Address: ")
+    device_user_name = input("Enter Device Username: ")
+    device_password = input("Enter Device Password: ")
+    device_enable_password = input("Enter Enable Password (Press Enter if not used): ")
+    device_connect_type = input("Enter Connection Type ('ssh' or 'telnet'): ")
+    device_connect_port = input("Enter Connection Port (ssh = 22): ")
+    return {"ip": device_ip_address, "password": device_password, "userName": device_user_name,
+            "type": device_connect_type, "port": device_connect_port,
+            "enablePassword": device_enable_password, "proxyList": []}
+
+
 def create_discoverable_device():
     if connection_info_is_set():
         dev_name = input("Enter Device Name: ")
         org_id = input("Enter Organization ID: ")
-        device_ip_address = input("Enter Device IP Address: ")
-        device_user_name = input("Enter Device Username: ")
-        device_password = input("Enter Device Password: ")
-        device_enable_password = input("Enter Enable Password (Press Enter if not used): ")
-        device_connect_type = input("Enter Connection Type ('ssh' or 'telnet'): ")
-        device_connect_port = input("Enter Connection Port (ssh = 22): ")
-        connection_information = '"connectionInformation": {"ip": "' + device_ip_address + '", "password": "' \
-                                 + device_password + '", "userName": "' + device_user_name + '", ' \
-                                 + '"type": "' + device_connect_type + '", "port": ' + device_connect_port + ', ' \
-                                 + '"enablePassword": "' + device_enable_password + '", "proxyList": []}'
-        payload = '{"name":"' + dev_name + '", "orgId": "' + org_id + '", ' + connection_information + '}'
+        connection_information = collect_connection_info()
+        payload = {"name": dev_name, "orgId": org_id, "connectionInformation": connection_information}
         resp = client.create_device(payload)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -199,7 +202,7 @@ def update_device():
         dev_id = input("Enter Device ID: ")
         element_name = input("Enter device element name to be updated: ")
         element_value = input("Enter value for device element: ")
-        payload = '{"' + element_name + '": "' + element_value + '"}'
+        payload = {element_name: element_value}
         resp = client.update_device(dev_id, payload)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -212,17 +215,8 @@ def update_device():
 def update_device_connection_info():
     if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
-        device_ip_address = input("Enter Device IP Address: ")
-        device_user_name = input("Enter Device Username: ")
-        device_password = input("Enter Device Password: ")
-        device_enable_password = input("Enter Enable Password (Press Enter if not used): ")
-        device_connect_type = input("Enter Connection Type ('ssh' or 'telnet'): ")
-        device_connect_port = input("Enter Connection Port (ssh = 22): ")
-        connection_information = '"connectionInformation": {"ip": "' + device_ip_address + '", "password": "' \
-                                 + device_password + '", "userName": "' + device_user_name + '", ' \
-                                 + '"type": "' + device_connect_type + '", "port": ' + device_connect_port + ', ' \
-                                 + '"enablePassword": "' + device_enable_password + '", "proxyList": []}'
-        payload = '{' + connection_information + '}'
+        connection_information = collect_connection_info()
+        payload = {"connectionInformation": connection_information}
         resp = client.update_device(dev_id, payload)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
@@ -235,7 +229,7 @@ def update_device_connection_info():
 def discover_device():
     if connection_info_is_set():
         dev_id = input("Enter Device ID: ")
-        payload = '{"devices": ["' + dev_id + '"]}'
+        payload = {"devices": [dev_id]}
         resp = client.discover_devices(payload)
         if resp["response_code"] == 200:
             pprint.pprint(resp["response_content"])
